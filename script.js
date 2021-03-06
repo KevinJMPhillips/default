@@ -1,1 +1,1 @@
-alert('MyFn');
+alert('Hello');
