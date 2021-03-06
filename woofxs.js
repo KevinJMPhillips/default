@@ -11,6 +11,18 @@ Image.prototype.project = function (x, y) {
     copy.y += y;
     return copy;
 };
+Image.prototype.moveUpBy = function(amt) {
+    this.y += amt;  
+};
+Image.prototype.moveDownBy = function(amt) {
+    this.y -= amt;  
+};
+Image.prototype.moveLeftBy = function(amt) {
+    this.x -= amt;  
+};
+Image.prototype.moveRightBy = function(amt) {
+    this.x += amt;  
+};
 Image.prototype.moveUpFive = function () {
     this.y += 5;
 };
