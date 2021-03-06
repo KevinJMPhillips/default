@@ -148,3 +148,7 @@ function scriptBlock(actor, arrayOfStatements, rate, loop) {
         return hasMore;
     }
 }
+scriptBlock.prototype.executeAgainst = function(player) {
+    this.target = player;
+    this.startExecution();
+};
