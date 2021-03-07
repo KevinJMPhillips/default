@@ -125,7 +125,9 @@ function scriptInstance(statement, iterationCount) {
         eval(this.code);
         
         if (loop == true) {
-            this.externalExecute(loop);       
+            setTimeout(() => {
+                this.externalExecute(loop);       
+            }, this.duration);
         }
     };
     
