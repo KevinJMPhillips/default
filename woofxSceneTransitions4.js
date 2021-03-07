@@ -6,6 +6,8 @@ var worldObjects = [];
 var sceneStack = [];
 var targetScene = 0;
 
+var worldMover = null;
+
 function activeScene() {
     return sceneStack[targetScene];
 }
@@ -75,6 +77,9 @@ Image.prototype.makeWorldObject = function() {
       worldObjects.push(this);  
   else
       activeScene().worldStack.push(this);
+};
+Image.prototype.makeWorldMover = function() {
+    worldMover = this;
 };
 
 Image.prototype.momentumY = 0;
