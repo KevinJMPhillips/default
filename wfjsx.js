@@ -72,7 +72,7 @@ function collideAny(player, set) {
 }
 function clickButton(caption, x, y, w, h, onClick)
 {
-    this.button = {
+    button = {
         delete: function() {
             this.button.rectangle.delete();
             this.button.text.delete();
