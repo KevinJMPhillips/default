@@ -18,7 +18,7 @@ function moveWorld(yamt, xamt) {
     });
     }
     else {
-      activeScene().worldObjects.forEach(wo => {
+      activeScene().worldStack.forEach(wo => {
          wo.x += xamt;
          wo.y += yamt;
       });
@@ -208,7 +208,7 @@ function Scene() {
     
     this.worldStack = [];
     if (sceneStack.length == 0) {
-        this.worldStack = worldStack;
+        this.worldStack = worldObjects;
     }
     sceneStack.push(this);    
     targetScene = sceneStack.length - 1;
