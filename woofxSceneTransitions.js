@@ -9,7 +9,11 @@ var targetScene = 0;
 function activeScene() {
     return sceneStack[targetScene];
 }
-
+function changeScene(newSceneNumber) {
+    activeScene().worldStack.forEach(wo => { wo.hide(); });
+   targetScene = newSceneNumber;
+    activeScene().worldStack.forEach(wo => { wo.show(); });
+}
 function moveWorld(yamt, xamt) {
     if (sceneStack.length == 0) {
     worldObjects.forEach(wo => {
