@@ -3,6 +3,13 @@ var woofStack = [];
 
 var worldObjects = [];
 
+var sceneStack = [];
+var targetScene = 0;
+
+function activeScene() {
+    return sceneStack[targetScene];
+}
+
 function moveWorld(yamt, xamt) {
     worldObjects.forEach(wo => {
         wo.x += xamt;
@@ -52,7 +59,10 @@ Image.prototype.assignGravity = function() {
   var grav = new scriptBlock(this, [new scriptInstance('actor.gravityTick()', 5)], 15, true).execute();  
 };
 Image.prototype.makeWorldObject = function() {
-  worldObjects.push(this);  
+  if (sceneStack.length == 0) 
+      worldObjects.push(this);  
+  else
+      activeScene().worldObjects.push(this);
 };
 
 Image.prototype.momentumY = 0;
@@ -185,4 +195,13 @@ function scriptBlock(actor, arrayOfStatements, rate, loop) {
 scriptBlock.prototype.executeAgainst = function(player) {
     this.target = player;
     this.startExecution();
+};
+function Scene() {
+    
+    this.worldStack = [];
+    if (sceneStack.length == 0) {
+        this.worldStack = worldStack;
+    }
+    sceneStack.push(this);    
+    targetScene = sceneStack.length - 1;
 };
