@@ -100,26 +100,12 @@ function clickButton(caption, x, y, w, h, onClick)
     return button;
 }
 function scriptInstance(statement, iterationCount) {
+    
     this.code = statement;
     this.duration = iterationCount;
     this.currentIteration = 0;
-    this.exec = function(me) {
-        var finished = false;
-
-        this.currentIteration++;
-
-        eval(this.code);
-
-        if (this.duration == this.currentIteration) {
-            this.currentIteration = 0;
-            finished = true;
-        }
-
-        return finished;
-    };
+    
     this.execute = function (actor) {
-        
-        this.exec(actor);
         
         var finished = false;
 
