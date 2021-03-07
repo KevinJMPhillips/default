@@ -114,19 +114,19 @@ function clickButton(caption, x, y, w, h, onClick)
 
     return button;
 }
-function scriptInstance(statement, iterationCount) {
-    
+function scriptInstance(statement, iterationCount) 
+{    
     this.code = statement;
     this.duration = iterationCount;
     this.currentIteration = 0;
     
-    this.externalExecute = function(loop) 
+    this.externalExecute = function(loop, actor) 
     {
         eval(this.code);
         
         if (loop == true) {
             setTimeout(() => {
-                this.externalExecute(loop);       
+                this.externalExecute(loop, actor);       
             }, this.duration);
         }
     };
