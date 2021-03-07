@@ -2,13 +2,22 @@
 <head>
 </head>
 <body>
-  Woof!
+  Woof!  Woof!
+  
+  <script>
+    
+     var project = new Woof({global: false, width: 300, height: 400});
+
+     var IMAGE_NAME = new project.Image({project: project, url: "https://woofjs.com/images/SMJjVCL.png"});
+    
+     fullScreen = false;
+    
+     setBackdropSize(500, 300);
+    
+  </script>
+  
   <script src="https://raw.githack.com/stevekrouse/WoofJS/master/woof.js">
   </script>
-  <script>
-    var project = new Woof({global: false, width: 300, height: 400})
 
-    var IMAGE_NAME = new project.Image({project: project, url: "https://woofjs.com/images/SMJjVCL.png"})
-  </script>
 </body>
 </html>
