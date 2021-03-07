@@ -1,6 +1,8 @@
 
 var woofStack = [];
 
+var worldObjects = [];
+
 Image.prototype.selfCopy = function () {
     let string = JSON.stringify(this);
     return JSON.parse(string);
@@ -41,6 +43,9 @@ Image.prototype.gravityTick = function() {
 };
 Image.prototype.assignGravity = function() {
   var grav = new scriptBlock(this, [new scriptInstance('actor.gravityTick()', 5)], 15, true).execute();  
+};
+Image.prototype.makeWorldObject = function() {
+  worldObjects.push(this);  
 };
 
 Image.prototype.momentumY = 0;
