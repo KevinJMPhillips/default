@@ -3,6 +3,13 @@ var woofStack = [];
 
 var worldObjects = [];
 
+function moveWorld(yamt, xamt) {
+    worldObjects.forEach(wo => {
+        wo.x += xamt;
+        wo.y += yamt;
+    });
+}
+
 Image.prototype.selfCopy = function () {
     let string = JSON.stringify(this);
     return JSON.parse(string);
