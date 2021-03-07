@@ -26,21 +26,23 @@ Image.prototype.moveRightBy = function(amt) {
 Image.prototype.moveUpFive = function () {
     this.y += 5;
 };
-Image.prototype.moveLeftFive = function () {
- 
+Image.prototype.moveLeftFive = function () { 
     this.x += 5;
 };
 Image.prototype.moveDownFive = function () {
     this.y -= 5;
 };
 Image.prototype.moveRightFive = function () {
-
     this.x -= 5;
 };
+Image.prototype.gravityTick = function() { 
+    this.y += this.momentumY;
+    this.momentumY += this.accelerationDueToGravity;
+};
+
 Image.prototype.momentumY = 0;
 Image.prototype.accelerationDueToGravity = 0.1;
 Image.prototype.moveSpeed = 4;
-
 
 function woof() {
     alert('Woof!');
@@ -56,7 +58,6 @@ function setupSprites(sprites) {
         sprites[i].script = new scriptBlock(sprites[i], [], 30, true);
     }
 }
-
 
 function collideAny(player, set) {
     for (var i = 0; i < set.length; i++) {
