@@ -11,10 +11,18 @@ function activeScene() {
 }
 
 function moveWorld(yamt, xamt) {
+    if (sceneStack.length == 0) {
     worldObjects.forEach(wo => {
         wo.x += xamt;
         wo.y += yamt;
     });
+    }
+    else {
+      activeScene().worldObjects.forEach(wo => {
+         wo.x += xamt;
+         wo.y += yamt;
+      });
+    }
 }
 
 Image.prototype.selfCopy = function () {
