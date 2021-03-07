@@ -39,6 +39,9 @@ Image.prototype.gravityTick = function() {
     this.y -= this.momentumY;
     this.momentumY += this.accelerationDueToGravity;
 };
+Image.prototype.assignGravity = function() {
+  var grav = new scriptBlock(this, [new scriptInstance('actor.gravityTick()', 5)], 15, true).execute();  
+};
 
 Image.prototype.momentumY = 0;
 Image.prototype.accelerationDueToGravity = 0.1;
