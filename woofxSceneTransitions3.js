@@ -74,7 +74,7 @@ Image.prototype.makeWorldObject = function() {
   if (sceneStack.length == 0) 
       worldObjects.push(this);  
   else
-      activeScene().worldObjects.push(this);
+      activeScene().worldStack.push(this);
 };
 
 Image.prototype.momentumY = 0;
