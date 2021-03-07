@@ -215,5 +215,5 @@ function Scene() {
         this.worldStack = worldObjects;
     }
     sceneStack.push(this);    
-    targetScene = sceneStack.length - 1;
+    changeScene(sceneStack.length - 1);
 };
