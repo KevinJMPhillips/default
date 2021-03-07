@@ -74,6 +74,7 @@ function clickButton(caption, x, y, w, h, onClick)
     this.button = {
         delete: function() {
             this.rectangle.delete();
+            this.text.delete();
         },
         rectangle: new Rectangle({
             width: w,
