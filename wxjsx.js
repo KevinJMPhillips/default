@@ -120,6 +120,15 @@ function scriptInstance(statement, iterationCount) {
     this.duration = iterationCount;
     this.currentIteration = 0;
     
+    this.externalExecute = function(loop) 
+    {
+        eval(this.code);
+        
+        if (loop == true) {
+            this.exeternalExecute(loop);       
+        }
+    };
+    
     this.execute = function (actor) {
         
         var finished = false;
