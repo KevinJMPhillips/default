@@ -22,5 +22,77 @@
   <script src="https://rawcdn.githack.com/stevekrouse/WoofJS/8f46930383acf6e7bc6db6a9084014bd3cbdd44a/woof.js">
   </script>
   
+  <link rel="shortcut icon" type="image/png" href="./favicon.png"/>
+<link rel="apple-touch-icon" href="./images/logo-1.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+<script data-presets="es2017" src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js"></script>
+<script type="text/javascript" src="./woof.js"></script>
+<script>
+
+  var config = {
+    apiKey: "AIzaSyBYHv7dCiD0bWiHRlcp4VIZCIqzoMnB4yY",
+    authDomain: "woofjs-d1b27.firebaseapp.com",
+    databaseURL: "https://woofjs-d1b27.firebaseio.com",
+    storageBucket: "woofjs-d1b27.appspot.com",
+    messagingSenderId: "397293370524"
+  };
+  
+  firebase.initializeApp(config);
+  
+  window.onhashchange = function() {
+    window.location.reload()
+  }
+  
+  var getID = function() {
+    return window.location.hash.substring(1, window.location.hash.length).split("/")[0];
+  }
+  var getCurrentRevisionCode = function(revisions) {
+    var revision = parseInt(window.location.hash.substring(1, window.location.hash.length).split("/")[1])
+    
+    var keys = Object.keys(revisions)
+    if (keys.length > 1){
+      keys = keys.slice(1, keys.length)
+    }
+    
+    
+    var key
+    if (!isNaN(revision) && (revision !== 0 && revision !== -1 * keys.length) && Math.abs(revision) < keys.length + 1){
+      if (revision < 0){
+        revision = keys.length + revision // -1 gives the previous revision
+      }
+      key = keys[revision - 1]
+    } else {
+      key = keys[keys.length - 1]
+    }
+    return revisions[key].code
+  }
+  
+  firebase.database().ref('/code/' + getID()).once('value').then(function(snapshot) {
+    if (snapshot.val()){
+      document.title = getID()
+      var c = Babel.transform(getCurrentRevisionCode(snapshot.val()), { presets: ['es2015'] }).code
+      c = c.replace("'use strict';", '')
+      var script = document.createElement( "script" );
+      script.type = "text/javascript";
+      script.text = c
+      document.body.appendChild(script)
+    } else {
+      alert("There's no project called '" + getID() + "'. Sorry :(")
+    }
+  });
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-82374072-1', 'auto');
+  ga('send', 'pageview');
+
+
+</script>
+  
 </body>
 </html>
