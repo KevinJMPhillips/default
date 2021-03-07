@@ -36,7 +36,7 @@ Image.prototype.moveRightFive = function () {
     this.x -= 5;
 };
 Image.prototype.gravityTick = function() { 
-    this.y += this.momentumY;
+    this.y -= this.momentumY;
     this.momentumY += this.accelerationDueToGravity;
 };
 
