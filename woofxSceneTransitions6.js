@@ -43,7 +43,7 @@ Image.prototype.project = function (x, y) {
 };
 Image.prototype.moveUpBy = function(amt) {
     if (worldMover == this) {
-        moveWorld(amt, 0);
+        moveWorld(-amt, 0);
     } 
     else {
         this.y += amt;  
@@ -51,7 +51,7 @@ Image.prototype.moveUpBy = function(amt) {
 };
 Image.prototype.moveDownBy = function(amt) {
     if (worldMover == this) {
-        moveWorld(-amt, 0);        
+        moveWorld(amt, 0);        
     } 
     else {
         this.y -= amt;  
@@ -59,7 +59,7 @@ Image.prototype.moveDownBy = function(amt) {
 };
 Image.prototype.moveLeftBy = function(amt) {
     if (worldMover == this) {
-        moveWorld(0, amt);
+        moveWorld(0, -amt);
     }
     else {
         this.x -= amt;  
@@ -67,7 +67,7 @@ Image.prototype.moveLeftBy = function(amt) {
 };
 Image.prototype.moveRightBy = function(amt) {
     if (worldMover == this) {
-        moveWorld(0, -amt);
+        moveWorld(0, amt);
     }
     else {
         this.x += amt;  
