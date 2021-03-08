@@ -18,7 +18,7 @@ function changeScene(newSceneNumber) {
 }
 function moveWorld(yamt, xamt) {
     if (sceneStack.length == 0) {
-    worldObjects.forEach(wo => {
+    worldObjects.forEach(wo => {        
         wo.x += xamt;
         wo.y += yamt;
     });
@@ -42,31 +42,52 @@ Image.prototype.project = function (x, y) {
     return copy;
 };
 Image.prototype.moveUpBy = function(amt) {
-    this.y += amt;  
+    if (worldMover == this) {
+        moveWorld(amt, 0);
+    } 
+    else {
+        this.y += amt;  
+    }
 };
 Image.prototype.moveDownBy = function(amt) {
-    this.y -= amt;  
+    if (worldMover == this) {
+        moveWorld(-amt, 0);        
+    } 
+    else {
+        this.y -= amt;  
+    }
 };
 Image.prototype.moveLeftBy = function(amt) {
-    this.x -= amt;  
+    if (worldMover == this) {
+        moveWorld(0, amt);
+    }
+    else {
+        this.x -= amt;  
+    }
 };
 Image.prototype.moveRightBy = function(amt) {
-    this.x += amt;  
+    if (worldMover == this) {
+        moveWorld(0, -amt);
+    }
+    else {
+        this.x += amt;  
+    }
 };
 Image.prototype.moveUpFive = function () {
-    this.y += 5;
+    this.moveUpBy(5);
 };
 Image.prototype.moveLeftFive = function () { 
-    this.x += 5;
+    this.moveLeftBy(5);
 };
 Image.prototype.moveDownFive = function () {
-    this.y -= 5;
+    this.moveDownBy(5);
 };
 Image.prototype.moveRightFive = function () {
-    this.x -= 5;
+    this.moveRightBy(5);
 };
 Image.prototype.gravityTick = function() { 
-    this.y -= this.momentumY;
+    this.moveDownBy(this.momentumY); // ??
+    //this.y -= this.momentumY;
     this.momentumY += this.accelerationDueToGravity;
 };
 Image.prototype.assignGravity = function() {
